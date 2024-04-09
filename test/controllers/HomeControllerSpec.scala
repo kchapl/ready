@@ -1,15 +1,18 @@
 package controllers
 
-import org.scalatestplus.play._
-import org.scalatestplus.play.guice._
-import play.api.test._
-import play.api.test.Helpers._
+import load.AppComponents
+import org.scalatestplus.play.*
+import org.scalatestplus.play.components.OneAppPerSuiteWithComponents
+import play.api.test.*
+import play.api.test.Helpers.*
 
 /** Add your spec here. You can mock out a whole application including requests, plugins etc.
   *
   * For more information, see https://www.playframework.com/documentation/latest/ScalaTestingWithScalaTest
   */
-class HomeControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
+class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents {
+
+  override val components: AppComponents = new AppComponents(context)
 
   "HomeController GET" should {
 
@@ -23,7 +26,7 @@ class HomeControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
     }
 
     "render the index page from the application" in {
-      val controller = inject[HomeController]
+      val controller = components.homeController
       val home = controller.index().apply(FakeRequest(GET, "/"))
 
       status(home) mustBe OK
