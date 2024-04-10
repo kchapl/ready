@@ -1,0 +1,11 @@
+@(readings: Seq[Reading])
+
+@main("Readings: All") {
+  <table>
+    @for(reading <- readings){
+      <tr>
+        <td>@reading.book.title</td>
+      </tr>
+    }
+  </table>
+}

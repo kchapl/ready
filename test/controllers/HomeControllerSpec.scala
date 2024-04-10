@@ -10,7 +10,7 @@ import play.api.test.Helpers.*
   *
   * For more information, see https://www.playframework.com/documentation/latest/ScalaTestingWithScalaTest
   */
-class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents {
+class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents:
 
   override val components: AppComponents = new AppComponents(context)
 
@@ -43,4 +43,3 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents {
       contentAsString(home) must include("Welcome to Play")
     }
   }
-}
