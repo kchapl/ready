@@ -32,28 +32,28 @@ class ReadingControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents w
         )
       )
       val controller = new ReadingController(stubControllerComponents(), readingStorage)
-      val home = controller.showAll().apply(FakeRequest(GET, "/readings"))
+      val result = controller.showAll().apply(FakeRequest(GET, "/readings"))
 
-      status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include("Readings")
+      status(result) mustBe OK
+      contentType(result) mustBe Some("text/html")
+      contentAsString(result) must include("Readings")
     }
 
     "render the readingAll page from the application" in {
       val controller = components.readingController
-      val home = controller.showAll().apply(FakeRequest(GET, "/readings"))
+      val result = controller.showAll().apply(FakeRequest(GET, "/readings"))
 
-      status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include("Readings")
+      status(result) mustBe OK
+      contentType(result) mustBe Some("text/html")
+      contentAsString(result) must include("Readings")
     }
 
     "render the readingAll page from the router" in {
       val request = FakeRequest(GET, "/readings")
-      val home = route(app, request).get
+      val result = route(app, request).get
 
-      status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include("Readings")
+      status(result) mustBe OK
+      contentType(result) mustBe Some("text/html")
+      contentAsString(result) must include("Readings")
     }
   }
