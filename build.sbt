@@ -6,7 +6,10 @@ lazy val root = (project in file("."))
     scalaVersion := "3.3.3",
     scalacOptions ++= Seq("-Werror"),
     scalafmtOnCompile := true,
-    libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+    libraryDependencies ++= Seq(
+      "com.google.apis" % "google-api-services-sheets" % "v4-rev612-1.25.0",
+      "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
+    )
   )
 
 // Adds additional packages into Twirl
