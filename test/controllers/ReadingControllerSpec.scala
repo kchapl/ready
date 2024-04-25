@@ -1,6 +1,7 @@
 package controllers
 
-import load.AppComponents
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import load.AppComponentsBase
 import models.{Book, Reading}
 import org.mockito.Mockito.when
 import org.scalatestplus.mockito.MockitoSugar
@@ -15,7 +16,8 @@ import java.time.LocalDate
 
 class ReadingControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents with MockitoSugar:
 
-  override val components: AppComponents = new AppComponents(context)
+  override val components: AppComponentsBase = new AppComponentsBase(context):
+    override def authCodeFlow: GoogleAuthorizationCodeFlow = mock[GoogleAuthorizationCodeFlow]
 
   "showAll" should {
 
