@@ -1,6 +1,8 @@
 package controllers
 
-import load.AppComponents
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import load.{AppComponents, AppComponentsBase}
+import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.*
 import org.scalatestplus.play.components.OneAppPerSuiteWithComponents
 import play.api.test.*
@@ -10,14 +12,20 @@ import play.api.test.Helpers.*
   *
   * For more information, see https://www.playframework.com/documentation/latest/ScalaTestingWithScalaTest
   */
-class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents:
+class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents with MockitoSugar:
 
-  override val components: AppComponents = new AppComponents(context)
+  override val components: AppComponentsBase = new AppComponentsBase(context):
+    override def authCodeFlow: GoogleAuthorizationCodeFlow = mock[GoogleAuthorizationCodeFlow]
 
   "HomeController GET" should {
 
     "render the index page from a new instance of controller" in {
-      val controller = new HomeController(stubControllerComponents())
+      val controller = new HomeController(
+        stubControllerComponents(),
+        components.transport,
+        components.jsonFactory,
+        components.authCodeFlow
+      )
       val home = controller.index().apply(FakeRequest(GET, "/"))
 
       status(home) mustBe OK
