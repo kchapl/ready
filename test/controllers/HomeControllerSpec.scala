@@ -1,6 +1,6 @@
 package controllers
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import com.google.api.client.googleapis.auth.oauth2.{GoogleAuthorizationCodeFlow, GoogleIdTokenVerifier}
 import load.{AppComponents, AppComponentsBase}
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.*
@@ -16,6 +16,7 @@ class HomeControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents with
 
   override val components: AppComponentsBase = new AppComponentsBase(context):
     override def authCodeFlow: GoogleAuthorizationCodeFlow = mock[GoogleAuthorizationCodeFlow]
+    override def idTokenVerifier: GoogleIdTokenVerifier = mock[GoogleIdTokenVerifier]
 
   "HomeController GET" should {
 

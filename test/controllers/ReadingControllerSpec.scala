@@ -1,6 +1,6 @@
 package controllers
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import com.google.api.client.googleapis.auth.oauth2.{GoogleAuthorizationCodeFlow, GoogleIdTokenVerifier}
 import load.AppComponentsBase
 import models.{Book, Reading}
 import org.mockito.Mockito.when
@@ -18,6 +18,7 @@ class ReadingControllerSpec extends PlaySpec with OneAppPerSuiteWithComponents w
 
   override val components: AppComponentsBase = new AppComponentsBase(context):
     override def authCodeFlow: GoogleAuthorizationCodeFlow = mock[GoogleAuthorizationCodeFlow]
+    override def idTokenVerifier: GoogleIdTokenVerifier = mock[GoogleIdTokenVerifier]
 
   "showAll" should {
 

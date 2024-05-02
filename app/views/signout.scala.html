@@ -1,0 +1,11 @@
+@(auth: models.Auth)(implicit request: RequestHeader)
+
+@main("Welcome to Play") {
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div id="g_id_onload"
+    data-client_id="@{auth.clientId}"
+    data-context="signout"
+    data-login_uri="@routes.HomeController.index().absoluteURL()"
+    data-itp_support="true">
+    </div>
+}
