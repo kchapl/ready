@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     scalacOptions ++= Seq("-Werror"),
     scalafmtOnCompile := true,
     libraryDependencies ++= Seq(
-      "com.google.apis" % "google-api-services-sheets" % "v4-rev20240416-2.0.0",
+      "com.google.apis" % "google-api-services-sheets" % "v4-rev20240716-2.0.0",
       "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.1" % Test
     )
   )
