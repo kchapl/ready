@@ -3,7 +3,8 @@ package load
 import com.google.api.client.googleapis.auth.oauth2.{GoogleAuthorizationCodeFlow, GoogleClientSecrets}
 import com.google.api.client.http.HttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
-import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.client.json.JsonFactory
+import com.google.api.client.json.gson.GsonFactory
 import com.google.api.client.util.store.MemoryDataStoreFactory
 import controllers.*
 import play.api.ApplicationLoader.Context
@@ -23,7 +24,7 @@ abstract class AppComponentsBase(context: Context)
     with AssetsComponents:
 
   val transport: HttpTransport = new NetHttpTransport()
-  val jsonFactory: JacksonFactory = JacksonFactory.getDefaultInstance
+  val jsonFactory: JsonFactory = GsonFactory.getDefaultInstance
 
   def authCodeFlow: GoogleAuthorizationCodeFlow
 
